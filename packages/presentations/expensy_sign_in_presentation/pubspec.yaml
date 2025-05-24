@@ -1,0 +1,17 @@
+name: expensy_sign_in_presentation
+description: "A new Flutter package project."
+version: 0.0.1
+homepage:
+environment:
+  sdk: ^3.8.0-177.0.dev
+  flutter: ">=1.17.0"
+dependencies:
+  flutter:
+    sdk: flutter
+  expensy_common:
+    path: ../../common/expensy_common    
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+flutter:

@@ -49,6 +49,76 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.8"
+  expensy_common:
+    dependency: "direct main"
+    description:
+      path: "packages/common/expensy_common"
+      relative: true
+    source: path
+    version: "0.0.1"
+  expensy_dashboard_presentation:
+    dependency: "direct main"
+    description:
+      path: "packages/presentations/expensy_dashboard_presentation"
+      relative: true
+    source: path
+    version: "0.0.1"
+  expensy_expenses_add_new_expense_form_presentation:
+    dependency: "direct main"
+    description:
+      path: "packages/presentations/expensy_expenses_add_new_expense_form_presentation"
+      relative: true
+    source: path
+    version: "0.0.1"
+  expensy_expenses_list_item_details_presentation:
+    dependency: "direct main"
+    description:
+      path: "packages/presentations/expensy_expenses_list_item_details_presentation"
+      relative: true
+    source: path
+    version: "0.0.1"
+  expensy_expenses_list_presentation:
+    dependency: "direct main"
+    description:
+      path: "packages/presentations/expensy_expenses_list_presentation"
+      relative: true
+    source: path
+    version: "0.0.1"
+  expensy_settings_presentation:
+    dependency: "direct main"
+    description:
+      path: "packages/presentations/expensy_settings_presentation"
+      relative: true
+    source: path
+    version: "0.0.1"
+  expensy_sign_in_presentation:
+    dependency: "direct main"
+    description:
+      path: "packages/presentations/expensy_sign_in_presentation"
+      relative: true
+    source: path
+    version: "0.0.1"
+  expensy_sign_up_presentation:
+    dependency: "direct main"
+    description:
+      path: "packages/presentations/expensy_sign_up_presentation"
+      relative: true
+    source: path
+    version: "0.0.1"
+  expensy_splash_presentation:
+    dependency: "direct main"
+    description:
+      path: "packages/presentations/expensy_splash_presentation"
+      relative: true
+    source: path
+    version: "0.0.1"
+  expensy_welcome_presentation:
+    dependency: "direct main"
+    description:
+      path: "packages/presentations/expensy_welcome_presentation"
+      relative: true
+    source: path
+    version: "0.0.1"
   fake_async:
     dependency: transitive
     description:
@@ -62,6 +132,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_admin_scaffold:
+    dependency: "direct main"
+    description:
+      name: flutter_admin_scaffold
+      sha256: ac8dc3845de994f68995440da7f7f2ff2fb7386165bbe9d3a4c984424bd3aabc
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.4.0"
   flutter_lints:
     dependency: "direct dev"
     description:
