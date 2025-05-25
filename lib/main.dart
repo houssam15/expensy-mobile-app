@@ -31,6 +31,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       darkTheme: getDarkTheme().getThemeData(),
       theme: getLightTheme().getThemeData(),
       initialRoute: getAppRoutes().getInitialRoute(),
