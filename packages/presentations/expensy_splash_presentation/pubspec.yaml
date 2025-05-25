@@ -9,9 +9,14 @@ dependencies:
   flutter:
     sdk: flutter
   expensy_common:
-    path: ../../common/expensy_common    
+    path: ../../common/expensy_common
+  flutter_bloc: ^9.1.1
+  equatable: ^2.0.7
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^5.0.0
 flutter:
+ assets:
+   - assets/
+   - assets/images/

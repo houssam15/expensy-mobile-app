@@ -1,5 +1,8 @@
 import "package:flutter/material.dart";
 import "package:expensy_splash_presentation/src/config/config.dart";
+import "blocs/remote/bloc.dart";
+import "views/views.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
 
 class ExpensySplashPresentation extends StatelessWidget {
   ExpensySplashPresentation({super.key});
@@ -13,10 +16,9 @@ class ExpensySplashPresentation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Expensy Splash", style: TextStyle(color: Colors.black)),
-      ),
+    return BlocProvider<ExpensySplashPresentationRemoteBloc>(
+        create: (context) => ExpensySplashPresentationRemoteBloc(),
+        child: ExpensySplashPresentationView(),
     );
   }
 }
