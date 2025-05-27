@@ -3,6 +3,7 @@ import "package:expensy_splash_presentation/src/config/config.dart";
 import "blocs/remote/bloc.dart";
 import "views/views.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
+import "package:expensy_common/expensy_common.dart";
 
 class ExpensySplashPresentation extends StatelessWidget {
   ExpensySplashPresentation({super.key});
@@ -16,9 +17,16 @@ class ExpensySplashPresentation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<ExpensySplashPresentationRemoteBloc>(
-        create: (context) => ExpensySplashPresentationRemoteBloc(),
-        child: ExpensySplashPresentationView(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<ExpensyCommonAuthenticationBloc>(
+            create: (context) => ExpensyCommonAuthenticationBloc()
+        ),
+        BlocProvider<ExpensySplashPresentationRemoteBloc>(
+          create: (context) => ExpensySplashPresentationRemoteBloc(),
+        )
+      ],
+      child: ExpensySplashPresentationView(),
     );
   }
 }

@@ -1,3 +1,4 @@
+import "package:expensy_common/expensy_common.dart";
 import "package:flutter/material.dart";
 import "package:expensy_splash_presentation/expensy_splash_presentation.dart";
 import "package:expensy_welcome_presentation/expensy_welcome_presentation.dart";
@@ -9,64 +10,54 @@ import "package:expensy_expenses_list_item_details_presentation/expensy_expenses
 import "package:expensy_expenses_add_new_expense_form_presentation/expensy_expenses_add_new_expense_form_presentation.dart";
 import "package:expensy_settings_presentation/expensy_settings_presentation.dart";
 
-class AppRoutes {
-
-  String _initialRoute = "/";
-  String _welcomeRoute = "/welcome";
-  String _signInRoute = "/sign-in";
-  String _signUpRoute = "/sign-up";
-  String _dashboardRoute = "/dashboard";
-  String _expensesListRoute = "/expenses-list";
-  String _expensesListItemDetailsRoute = "/expenses-list-item-details";
-  String _expensesAddNewExpenseFormRoute = "/expenses-add-new-expense-form";
-  String _settingsRoute = "/settings";
+class AppRouting {
 
   String getInitialRoute(){
-    return _initialRoute;
+    return ExpensyCommonAppRoutes.initialRoute;
   }
 
   String getWelcomeRoute(){
-    return _welcomeRoute;
+    return ExpensyCommonAppRoutes.welcomeRoute;
   }
 
   String getSignInRoute(){
-    return _signInRoute;
+    return ExpensyCommonAppRoutes.signInRoute;
   }
 
   String getSignUpRoute(){
-    return _signUpRoute;
+    return ExpensyCommonAppRoutes.signUpRoute;
   }
 
   String getDashboardRoute(){
-    return _dashboardRoute;
+    return ExpensyCommonAppRoutes.dashboardRoute;
   }
 
   String getExpensesListRoute(){
-    return _expensesListRoute;
+    return ExpensyCommonAppRoutes.expensesListRoute;
   }
 
   String getExpensesListItemDetailsRoute(){
-    return _expensesListItemDetailsRoute;
+    return ExpensyCommonAppRoutes.expensesListItemDetailsRoute;
   }
 
   String getExpensesAddNewExpenseFormRoute(){
-    return _expensesAddNewExpenseFormRoute;
+    return ExpensyCommonAppRoutes.expensesAddNewExpenseFormRoute;
   }
 
   String getSettingsRoute(){
-    return _settingsRoute;
+    return ExpensyCommonAppRoutes.settingsRoute;
   }
 
   Map<String, Widget Function(BuildContext)> getRoutes(){
     return {
-      _welcomeRoute: (context) => ExpensyWelcomePresentation(),
-      _signInRoute: (context) => ExpensySignInPresentation(),
-      _signUpRoute: (context) => ExpensySignUpPresentation(),
-      _dashboardRoute: (context) => ExpensyDashboardPresentation(),
-      _expensesListRoute: (context) => ExpensyExpensesListPresentation(),
-      _expensesListItemDetailsRoute: (context) => ExpensyExpensesListItemDetailsPresentation(),
-      _expensesAddNewExpenseFormRoute: (context) => ExpensyExpensesAddNewExpenseFormPresentation(),
-      _settingsRoute: (context) => ExpensySettingsPresentation(),
+      ExpensyCommonAppRoutes.welcomeRoute: (context) => ExpensyWelcomePresentation(),
+      ExpensyCommonAppRoutes.signInRoute: (context) => ExpensySignInPresentation(),
+      ExpensyCommonAppRoutes.signUpRoute: (context) => ExpensySignUpPresentation(),
+      ExpensyCommonAppRoutes.dashboardRoute: (context) => ExpensyDashboardPresentation(),
+      ExpensyCommonAppRoutes.expensesListRoute: (context) => ExpensyExpensesListPresentation(),
+      ExpensyCommonAppRoutes.expensesListItemDetailsRoute: (context) => ExpensyExpensesListItemDetailsPresentation(),
+      ExpensyCommonAppRoutes.expensesAddNewExpenseFormRoute: (context) => ExpensyExpensesAddNewExpenseFormPresentation(),
+      ExpensyCommonAppRoutes.settingsRoute: (context) => ExpensySettingsPresentation(),
     };
   }
 
