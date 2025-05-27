@@ -1,21 +1,34 @@
 import 'package:expensy/routes.dart';
 import 'package:flutter/material.dart';
 import "package:expensy_common/expensy_common.dart";
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+      MultiBlocProvider(
+        providers: [
+          BlocProvider<ExpensyCommonAppThemeBloc>(
+              create: (_) => ExpensyCommonAppThemeBloc()
+          ),
+          BlocProvider<ExpensyCommonAuthenticationBloc>(
+              create: (_) => ExpensyCommonAuthenticationBloc()..add(ExpensyCommonAuthenticationAppStarted())
+          )
+        ],
+        child: MyApp(),
+      )
+  );
 }
 
 class MyApp extends StatelessWidget {
   MyApp({super.key});
 
-  AppRoutes? _appRoutes;
+  AppRouting? _appRouting;
   ExpensyCommonDarkTheme? _darkTheme;
   ExpensyCommonLightTheme? _lightTheme;
 
-  AppRoutes getAppRoutes() {
-    _appRoutes ??= AppRoutes();
-    return _appRoutes!;
+  AppRouting getAppRouting() {
+    _appRouting ??= AppRouting();
+    return _appRouting!;
   }
 
   ExpensyCommonDarkTheme getDarkTheme() {
@@ -30,13 +43,27 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      darkTheme: getDarkTheme().getThemeData(),
-      theme: getLightTheme().getThemeData(),
-      initialRoute: getAppRoutes().getInitialRoute(),
-      routes: getAppRoutes().getRoutes(),
-      home: getAppRoutes().getInitialWidget(),
+    return BlocBuilder<ExpensyCommonAppThemeBloc,ExpensyCommonAppThemeState>(
+      builder: (context, state) => MaterialApp(
+        debugShowCheckedModeBanner: false,
+        darkTheme: getDarkTheme().getThemeData(),
+        theme: getLightTheme().getThemeData(),
+        themeMode: state.themeMode,
+        initialRoute: getAppRouting().getInitialRoute(),
+        routes: getAppRouting().getRoutes(),
+        home: BlocListener<ExpensyCommonAuthenticationBloc,ExpensyCommonAuthenticationState>(
+            listener: (context,state){
+              if(state.status == ExpensyCommonAuthenticationStatus.notAuthenticated){
+                  Navigator.pushReplacementNamed(context, getAppRouting().getWelcomeRoute());
+              }
+
+              if(state.status == ExpensyCommonAuthenticationStatus.authenticated){
+                  Navigator.pushReplacementNamed(context, getAppRouting().getDashboardRoute());
+              }
+            },
+            child: getAppRouting().getInitialWidget()
+        ),
+      ),
     );
   }
 }
