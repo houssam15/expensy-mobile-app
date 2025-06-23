@@ -14,8 +14,6 @@ Expensy is a mobile app built with Flutter that helps users track and manage the
     <img src="screenshots/expenses_list_item_details_light.png" alt="SCREEN 4" style="width: 300px; height: auto;">
     <img src="screenshots/add_new_expenses_form_page_light.png" alt="SCREEN 4" style="width: 300px; height: auto;">
     <img src="screenshots/settings_page_light.png" alt="SCREEN 4" style="width: 300px; height: auto;">
-
-
 </div>
 
 This project is a starting point for a Flutter application.

@@ -16,13 +16,15 @@ class ExpensyWelcomePresentationViewSuccessPageBody extends StatelessWidget {
             border: Border(),
             //color: Colors.grey,
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ExpensyWelcomePresentationViewSuccessPageBodyMainDesign(),
-            ExpensyWelcomePresentationViewSuccessPageBodyTitle(),
-            ExpensyWelcomePresentationViewSuccessPageBodyDescription(),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ExpensyWelcomePresentationViewSuccessPageBodyMainDesign(),
+              ExpensyWelcomePresentationViewSuccessPageBodyTitle(),
+              ExpensyWelcomePresentationViewSuccessPageBodyDescription(),
+            ],
+          ),
         ),
       ),
     );

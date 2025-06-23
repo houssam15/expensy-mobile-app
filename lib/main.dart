@@ -1,9 +1,19 @@
 import 'package:expensy/routes.dart';
+import 'package:expensy_firebase/expensy_firebase.dart';
 import 'package:flutter/material.dart';
 import "package:expensy_common/expensy_common.dart";
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp
+  ]);
+
+  await ExpensyFirebase.ensureInitialization();
+
   runApp(
       MultiBlocProvider(
         providers: [
