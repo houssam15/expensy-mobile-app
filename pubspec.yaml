@@ -30,6 +30,8 @@ dependencies:
     path: packages/presentations/expensy_splash_presentation
   expensy_welcome_presentation:  
     path: packages/presentations/expensy_welcome_presentation
+  expensy_firebase:
+    path: packages/data-source/firebase/expensy_firebase
 
 dev_dependencies:
   flutter_test:

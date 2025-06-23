@@ -12,3 +12,9 @@ GeneratedPluginRegistrant.java
 key.properties
 **/*.keystore
 **/*.jks
+
+# Firebase - Google Services
+app/google-services.json
+
+# Facebook credentials (better to extract them to a separate file!)
+app/src/main/res/values/strings.xml

@@ -1,5 +1,8 @@
 import "package:flutter/material.dart";
 import "package:expensy_sign_in_presentation/src/config/config.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "blocs/remote/bloc.dart";
+import 'views/views.dart';
 
 class ExpensySignInPresentation extends StatelessWidget {
   ExpensySignInPresentation({super.key});
@@ -17,10 +20,13 @@ class ExpensySignInPresentation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Expensy Sign In"),
-      )
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<ExpensySignInPresentationRemoteBloc>(
+            create: (context) => ExpensySignInPresentationRemoteBloc()..add(ExpensySignInPresentationRemoteStarted(context))
+        )
+      ],
+      child: ExpensySignInPresentationView(),
     );
   }
 }
