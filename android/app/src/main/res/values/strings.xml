@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Expensy</string>
+    <string name="facebook_app_id">1387851795844818</string>
+    <string name="fb_login_protocol_scheme">fb1387851795844818</string>
+    <string name="facebook_client_token">69f4b74a606cb1b5ea4f8de9d895f8a3</string>
+
+</resources>
