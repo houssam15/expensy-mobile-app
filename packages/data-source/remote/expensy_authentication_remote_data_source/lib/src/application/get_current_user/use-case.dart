@@ -4,31 +4,66 @@ import "package:expensy_firebase/expensy_firebase.dart";
 part "request.dart";
 part "response.dart";
 
-class ExpensySignUpRemoteDataSourceCreateUserUseCase {
+class ExpensyAuthenticationRemoteDataSourceGetCurrentUserUseCase {
 
-  Future<ExpensySignUpRemoteDataSourceCreateUserResponse> execute(ExpensySignUpRemoteDataSourceCreateUserRequest request) async {
-    ExpensySignUpRemoteDataSourceCreateUserResponse response = ExpensySignUpRemoteDataSourceCreateUserResponse();
-      if(!request.isValid()){
-        response.setError(ExpensySignUpRemoteDataSourceCreateUserResponseErrors.emptyFieldsNotAllowed);
+  Future<ExpensyAuthenticationRemoteDataSourceGetCurrentUserResponse> execute(ExpensyAuthenticationRemoteDataSourceGetCurrentUserRequest request) async {
+    ExpensyAuthenticationRemoteDataSourceGetCurrentUserResponse response = ExpensyAuthenticationRemoteDataSourceGetCurrentUserResponse();
+
+    try{
+      var user = ExpensyFirebase.getFirebaseAuth().getCurrentUser();
+
+      response.addMetaData(user);
+
+      if(user==null){
+
+        response.setError(ExpensyAuthenticationRemoteDataSourceGetCurrentUserResponseErrors.cantGetUser);
+
       }else{
-        try{
-          await ExpensyFirebase.getFirebaseAuth().createUserWithEmailAndPassword(
-              email: request.getUser()!.getEmail()!,
-              password: request.getUser()!.getPassword()!,
-          );
-        } on ExpensyFirebaseAuthException catch(err){
-          switch(err.getCode()){
-            case ExpensyFirebaseAuthExceptionCode.emailAlreadyInUse :
-              response.setError(ExpensySignUpRemoteDataSourceCreateUserResponseErrors.emailAlreadyExist);
-            case ExpensyFirebaseAuthExceptionCode.invalidEmail :
-              response.setError(ExpensySignUpRemoteDataSourceCreateUserResponseErrors.invalidEmail);
-            case ExpensyFirebaseAuthExceptionCode.weakPassword :
-              response.setError(ExpensySignUpRemoteDataSourceCreateUserResponseErrors.weakPassword);
-            default:
-              response.setError(ExpensySignUpRemoteDataSourceCreateUserResponseErrors.others);
-          }
+
+        var userDetails = ExpensyFirebase.getFirebaseStore()..loadCollection("users");
+        
+        await userDetails.filterAndLoadDocument(
+            whereClauses:[
+              WhereClause(field: "email",isEqualTo: user.getEmail())
+            ],
+            limit: 1
+        );
+
+        if (userDetails.getDocument() != null && userDetails.getDocument()!.docs.isNotEmpty) {
+
+          Map<String, dynamic>? userJson = userDetails.getDocument()!.docs.first.data();
+
+          user
+          ..setFirstName(userJson["firstName"])
+          ..setLastName(userJson["lastName"])
+          ..setAvatarPictureUrl(userJson["profileAvatarUrl"])
+          ..setUserId(userDetails.getDocument()!.docs.first.id);
+
+        } else {
+
+          response.setError(ExpensyAuthenticationRemoteDataSourceGetCurrentUserResponseErrors.cantGetUserDetails);
+
         }
+
       }
+
+      response.setUser(user);
+
+    }on ExpensyFirebaseFirestoreException catch (e){
+
+      response.addMetaData(e);
+
+      switch(e.getCode()){
+        case ExpensyFirebaseFirestoreExceptionCode.cantFilterDocuments: response.setError(ExpensyAuthenticationRemoteDataSourceGetCurrentUserResponseErrors.cantGetUserDetails);
+        default : response.setIsHaveUnknownError(true);
+      }
+
+    }catch(err){
+
+      response..addMetaData(err)..setIsHaveUnknownError(true);
+
+    }
+
     return response;
   }
 

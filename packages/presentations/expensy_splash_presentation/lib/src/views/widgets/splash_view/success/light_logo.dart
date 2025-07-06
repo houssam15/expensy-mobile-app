@@ -9,8 +9,8 @@ class LightLogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Image.asset(
-        "assets/images/logo-light.png",
-        package: context.read<ExpensySplashPresentationRemoteBloc>().getConfig().packageName,
+        "assets/images/logo-light.svg",
+        package: context.read<ExpensySplashPresentationRemoteBloc>().getConfig().commonPackageName,
     );
   }
 }

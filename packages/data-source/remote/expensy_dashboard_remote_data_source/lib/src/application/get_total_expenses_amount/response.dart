@@ -1,22 +1,21 @@
 part of "use-case.dart";
 
-enum ExpensyDashboardRemoteDataSourceGetRecentExpensesResponseErrors{
+enum ExpensyDashboardRemoteDataSourceGetTotalExpensesAmountResponseErrors{
   others,
-  cantGetDocument,
-  collectionNotFound
+
 }
 
-class ExpensyDashboardRemoteDataSourceGetRecentExpensesResponse extends ExpensyCommonResponse{
+class ExpensyDashboardRemoteDataSourceGetTotalExpensesAmountResponse extends ExpensyCommonResponse{
 
-  ExpensyDashboardRemoteDataSourceGetRecentExpensesResponseErrors? _error;
-  List<ExpensyDashboardRemoteDataSourceExpense>? _items;
+  ExpensyDashboardRemoteDataSourceGetTotalExpensesAmountResponseErrors? _error;
+  double? _total;
 
-  void setError(ExpensyDashboardRemoteDataSourceGetRecentExpensesResponseErrors? error) => _error = error;
-  void setItems(List<ExpensyDashboardRemoteDataSourceExpense>? items) => _items = items;
+  void setError(ExpensyDashboardRemoteDataSourceGetTotalExpensesAmountResponseErrors? error) => _error = error;
+  void setTotal(double? total) => _total = total;
 
-  ExpensyDashboardRemoteDataSourceGetRecentExpensesResponseErrors? getError() => _error;
+  ExpensyDashboardRemoteDataSourceGetTotalExpensesAmountResponseErrors? getError() => _error;
   bool isSuccess() => _error == null;
   bool hasError() => _error!=null || isHaveUnknownError();
-  List<ExpensyDashboardRemoteDataSourceExpense>? getItems() => _items;
+  double? getTotal() => _total;
 
 }

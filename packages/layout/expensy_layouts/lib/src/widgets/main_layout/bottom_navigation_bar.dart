@@ -12,6 +12,14 @@ class ExpensyLayoutsMainLayoutBottomNavigationBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
+      decoration: BoxDecoration(
+        border: Border(
+          top: BorderSide(
+            color: Colors.grey.withOpacity(0.5), // border color
+            width: 1.0,         // border width
+          ),
+        ),
+      ),
       height: 70,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,

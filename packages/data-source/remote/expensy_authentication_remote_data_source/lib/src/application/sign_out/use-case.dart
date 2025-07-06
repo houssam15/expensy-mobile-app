@@ -4,12 +4,12 @@ import "package:expensy_firebase/expensy_firebase.dart";
 part "request.dart";
 part "response.dart";
 
-class ExpensyAuthenticationRemoteDataSourceGetCurrentUserUseCase {
+class ExpensyAuthenticationRemoteDataSourceSignOutUseCase {
 
-  Future<ExpensyAuthenticationRemoteDataSourceGetCurrentUserResponse> execute(ExpensyAuthenticationRemoteDataSourceGetCurrentUserRequest request) async {
-    ExpensyAuthenticationRemoteDataSourceGetCurrentUserResponse response = ExpensyAuthenticationRemoteDataSourceGetCurrentUserResponse();
+  Future<ExpensyAuthenticationRemoteDataSourceSignOutResponse> execute(ExpensyAuthenticationRemoteDataSourceSignOutRequest request) async {
+    ExpensyAuthenticationRemoteDataSourceSignOutResponse response = ExpensyAuthenticationRemoteDataSourceSignOutResponse();
 
-    response.setUser(ExpensyFirebaseAuth().getCurrentUser());
+    ExpensyFirebase.getFirebaseAuth().signOut();
 
     return response;
   }

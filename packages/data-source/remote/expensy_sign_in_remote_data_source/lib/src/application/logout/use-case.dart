@@ -17,7 +17,7 @@ class ExpensySignInRemoteDataSourceLogOutUseCase {
           response.setIsSignOutSuccess(true);
         }
     }catch(err){
-      response..addMetaData(err)..setIsHaveError(true);
+      response..addMetaData(err)..setIsHaveUnknownError(true);
     }
     return response;
   }

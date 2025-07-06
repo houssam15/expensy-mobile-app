@@ -1,0 +1,3 @@
+enum AggregationType {
+  week,month
+}

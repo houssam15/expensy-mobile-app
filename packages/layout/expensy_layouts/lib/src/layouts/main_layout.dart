@@ -14,7 +14,7 @@ class _ExpensyLayoutsMainLayoutState extends State<ExpensyLayoutsMainLayout> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<ExpensyLayoutsMainLayoutBloc>(
-      create: (context) => ExpensyLayoutsMainLayoutBloc(),
+      create: (context) => ExpensyLayoutsMainLayoutBloc()..add(ExpensyLayoutsMainLayoutStarted(context)),
       child: SafeArea(
         child: BlocBuilder<ExpensyLayoutsMainLayoutBloc,ExpensyLayoutsMainLayoutState>(
           builder: (context,state) {

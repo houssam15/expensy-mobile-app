@@ -10,6 +10,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  expensy_common:
+    path: ../../../common/expensy_common
+  expensy_firebase:
+    path: ../../../data-source/firebase/expensy_firebase
 
 dev_dependencies:
   flutter_test:

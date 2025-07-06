@@ -19,9 +19,6 @@ class ExpensySplashPresentation extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<ExpensyCommonAuthenticationBloc>(
-            create: (context) => ExpensyCommonAuthenticationBloc()
-        ),
         BlocProvider<ExpensySplashPresentationRemoteBloc>(
           create: (context) => ExpensySplashPresentationRemoteBloc(),
         )

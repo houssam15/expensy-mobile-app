@@ -1,27 +1,18 @@
 part of "use-case.dart";
 
-enum ExpensyAuthenticationRemoteDataSourceGetCurrentUserResponseErrors{
+enum ExpensyAuthenticationRemoteDataSourceSignOutResponseErrors{
   others
 }
 
-class ExpensyAuthenticationRemoteDataSourceGetCurrentUserResponse extends ExpensyCommonResponse{
+class ExpensyAuthenticationRemoteDataSourceSignOutResponse extends ExpensyCommonResponse{
   //current user
-  User? _user;
-  ExpensyAuthenticationRemoteDataSourceGetCurrentUserResponseErrors? _error;
+  ExpensyAuthenticationRemoteDataSourceSignOutResponseErrors? _error;
 
-  void setUser(User? user){
-    _user = user;
-  }
-
-  User? getUser(){
-    return _user;
-  }
-
-  void setError(ExpensyAuthenticationRemoteDataSourceGetCurrentUserResponseErrors? error){
+  void setError(ExpensyAuthenticationRemoteDataSourceSignOutResponseErrors? error){
     _error = error;
   }
 
-  ExpensyAuthenticationRemoteDataSourceGetCurrentUserResponseErrors? getError(){
+  ExpensyAuthenticationRemoteDataSourceSignOutResponseErrors? getError(){
     return _error;
   }
 
@@ -29,7 +20,4 @@ class ExpensyAuthenticationRemoteDataSourceGetCurrentUserResponse extends Expens
     return _error == null;
   }
 
-  bool hasUser(){
-    return _user != null;
-  }
 }

@@ -2,44 +2,68 @@ part of "bloc.dart";
 
 class ExpensyLayoutsMainLayoutState extends Equatable{
 
-  int _currentIndex;
-  List<Widget> _items;
+  String _selectedRoute;
+  List<ExpensyLayoutsBottomNavigationBarItem> _items;
   Widget? _body;
 
-  ExpensyLayoutsMainLayoutState({
-      int currentIndex = 0,
-      List<Widget>? items ,
-      Widget? body
-  }):_currentIndex = currentIndex,
-     _items = items
-              ?? [
-                   ExpensyLayoutsMainLayoutBottomNavigationBarHomeItem(),
-                   ExpensyLayoutsMainLayoutBottomNavigationBarAddItem(),
-                   ExpensyLayoutsMainLayoutBottomNavigationBarExpensesItem()
-              ],
-     _body = body;
+  ExpensyLayoutsMainLayoutState._({
+      required String selectedRoute,
+      required List<ExpensyLayoutsBottomNavigationBarItem> items ,
+      required Widget? body
+  }):_selectedRoute = selectedRoute ?? ExpensyCommonAppRoutes.dashboardRoute,
+     _body = body,
+     _items = items;
 
-  ExpensyLayoutsMainLayoutState copyWith({
-    int? currentIndex,
-    List<Widget>? items,
-    Widget? widget
-  }){
-    return ExpensyLayoutsMainLayoutState(
-      currentIndex: currentIndex ?? _currentIndex,
-      items: items ?? _items,
-      body: widget ?? _body
+  factory ExpensyLayoutsMainLayoutState({
+    String? selectedRoute,
+    Widget? body,
+  }) {
+    final route = selectedRoute ?? ExpensyCommonAppRoutes.dashboardRoute;
+
+    final items = [
+      ExpensyLayoutsBottomNavigationBarItem(
+        route: ExpensyCommonAppRoutes.dashboardRoute,
+        child: ExpensyLayoutsMainLayoutBottomNavigationBarHomeItem(
+          isSelected: route == ExpensyCommonAppRoutes.dashboardRoute,
+        ),
+      ),
+      ExpensyLayoutsBottomNavigationBarItem(
+        route: ExpensyCommonAppRoutes.expensesAddNewExpenseFormRoute,
+        child: ExpensyLayoutsMainLayoutBottomNavigationBarAddItem(
+          isSelected: route == ExpensyCommonAppRoutes.expensesAddNewExpenseFormRoute,
+        ),
+      ),
+      ExpensyLayoutsBottomNavigationBarItem(
+        route: ExpensyCommonAppRoutes.expensesListRoute,
+        child: ExpensyLayoutsMainLayoutBottomNavigationBarExpensesItem(
+          isSelected: route == ExpensyCommonAppRoutes.expensesListRoute,
+        ),
+      ),
+    ];
+
+    return ExpensyLayoutsMainLayoutState._(
+      selectedRoute: route,
+      items: items,
+      body: body,
     );
   }
 
-  int getCurrentIndex(){
-    return _currentIndex;
+  ExpensyLayoutsMainLayoutState copyWith({
+    String? selectedRoute,
+    List<ExpensyLayoutsBottomNavigationBarItem>? items,
+    Widget? body
+  }){
+    return ExpensyLayoutsMainLayoutState(
+      selectedRoute: selectedRoute ?? _selectedRoute,
+      body: body ?? _body
+    );
   }
 
-  void onTap(int index){
-
+  String getSelectedRoute(){
+    return _selectedRoute;
   }
 
-  List<Widget> getItems(){
+  List<ExpensyLayoutsBottomNavigationBarItem> getItems(){
     return _items;
   }
 
@@ -48,5 +72,7 @@ class ExpensyLayoutsMainLayoutState extends Equatable{
   }
 
   @override
-  List<Object?> get props => [_currentIndex,_items,_body];
+  List<Object?> get props => [_selectedRoute,_items,_body];
+
 }
+

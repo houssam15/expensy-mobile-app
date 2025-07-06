@@ -1,5 +1,8 @@
 import "package:flutter/material.dart";
 import "package:expensy_dashboard_presentation/src/config/config.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "blocs/remote/bloc.dart";
+import "views/dashboard_view.dart";
 
 class ExpensyDashboardPresentation extends StatelessWidget {
   ExpensyDashboardPresentation({super.key});
@@ -17,10 +20,13 @@ class ExpensyDashboardPresentation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Expensy Dashboard"),
-      ),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<ExpensyDashboardPresentationRemoteBloc>(
+            create: (context) => ExpensyDashboardPresentationRemoteBloc()..add(ExpensyDashboardPresentationRemoteStarted(context))
+        )
+      ],
+      child: ExpensyDashboardPresentationView(),
     );
   }
 }

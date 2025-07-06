@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 
-class ExpensySignUpPresentationViewFailedPage extends StatelessWidget {
-  const ExpensySignUpPresentationViewFailedPage({super.key});
+class ExpensyDashboardPresentationViewFailedPage extends StatelessWidget {
+  const ExpensyDashboardPresentationViewFailedPage({super.key});
 
   @override
   Widget build(BuildContext context) {

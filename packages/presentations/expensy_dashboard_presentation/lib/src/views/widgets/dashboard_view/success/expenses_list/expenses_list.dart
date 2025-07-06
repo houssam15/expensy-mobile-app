@@ -1,4 +1,6 @@
 import "package:flutter/material.dart";
+import "expenses_list_header/expenses_list_header.dart";
+import "expenses_list_recent_elements_preview/expenses_list_recent_elements_preview.dart";
 
 class ExpensyDashboardPresentationViewSuccessPageExpensesList extends StatelessWidget {
   const ExpensyDashboardPresentationViewSuccessPageExpensesList({super.key});
@@ -12,15 +14,8 @@ class ExpensyDashboardPresentationViewSuccessPageExpensesList extends StatelessW
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: [
-          // Expense list
-          Text(
-            "Expense list",
-            style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w900
-            ),
-          ),
-          //
+          ExpensyDashboardPresentationViewSuccessPageExpensesListHeader(),
+          ExpensyDashboardPresentationViewSuccessPageExpensesListRecentElementsPreview()
         ],
       ),
     );

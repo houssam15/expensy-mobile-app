@@ -32,6 +32,8 @@ dependencies:
     path: packages/presentations/expensy_welcome_presentation
   expensy_firebase:
     path: packages/data-source/firebase/expensy_firebase
+  expensy_layouts:
+    path: packages/layout/expensy_layouts
 
 dev_dependencies:
   flutter_test:

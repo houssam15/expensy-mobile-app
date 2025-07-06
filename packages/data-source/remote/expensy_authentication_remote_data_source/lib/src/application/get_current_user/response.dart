@@ -1,17 +1,14 @@
 part of "use-case.dart";
 
-enum ExpensySignUpRemoteDataSourceCreateUserResponseErrors{
-  emptyFieldsNotAllowed,
-  emailAlreadyExist,
-  invalidEmail,
-  weakPassword,
-  others
+enum ExpensyAuthenticationRemoteDataSourceGetCurrentUserResponseErrors{
+  cantGetUser,
+  cantGetUserDetails
 }
 
-class ExpensySignUpRemoteDataSourceCreateUserResponse extends ExpensyCommonResponse{
+class ExpensyAuthenticationRemoteDataSourceGetCurrentUserResponse extends ExpensyCommonResponse{
   //current user
   User? _user;
-  ExpensySignUpRemoteDataSourceCreateUserResponseErrors? _error;
+  ExpensyAuthenticationRemoteDataSourceGetCurrentUserResponseErrors? _error;
 
   void setUser(User? user){
     _user = user;
@@ -21,15 +18,23 @@ class ExpensySignUpRemoteDataSourceCreateUserResponse extends ExpensyCommonRespo
     return _user;
   }
 
-  void setError(ExpensySignUpRemoteDataSourceCreateUserResponseErrors? error){
+  void setError(ExpensyAuthenticationRemoteDataSourceGetCurrentUserResponseErrors? error){
     _error = error;
   }
 
-  ExpensySignUpRemoteDataSourceCreateUserResponseErrors? getError(){
+  ExpensyAuthenticationRemoteDataSourceGetCurrentUserResponseErrors? getError(){
     return _error;
   }
 
   bool isSuccess(){
     return _error == null;
+  }
+
+  bool hasUser(){
+    return _user != null;
+  }
+
+  bool hasError(){
+    return _error != null || isHaveUnknownError();
   }
 }

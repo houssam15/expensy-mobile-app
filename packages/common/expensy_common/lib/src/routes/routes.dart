@@ -8,4 +8,5 @@ class ExpensyCommonAppRoutes{
   static String expensesListItemDetailsRoute = "/expenses-list-item-details";
   static String expensesAddNewExpenseFormRoute = "/expenses-add-new-expense-form";
   static String settingsRoute = "/settings";
+  static String mainLayoutRoute = "/main-layout";
 }

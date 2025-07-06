@@ -27,7 +27,7 @@ class ExpensySignInRemoteDataSourceLoginWithGoogleUseCase {
       }
 
     }catch(err){
-      response..addMetaData(err)..setIsHaveError(true);
+      response..addMetaData(err)..setIsHaveUnknownError(true);
     }
     return response;
   }

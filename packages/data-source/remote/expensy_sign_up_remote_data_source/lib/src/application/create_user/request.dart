@@ -14,8 +14,7 @@ class ExpensySignUpRemoteDataSourceCreateUserRequest extends ExpensyCommonReques
   bool isValid(){
     return _user != null
            && _user?.getEmail() != null
-           && _user?.getPassword() != null
-           && _user?.getFullName() != null;
+           && _user?.getPassword() != null;
   }
 
 }

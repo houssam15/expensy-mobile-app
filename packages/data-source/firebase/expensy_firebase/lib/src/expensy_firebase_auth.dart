@@ -1,7 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' hide User;
 import "expensy_firebase_auth_exception.dart";
 import "package:google_sign_in/google_sign_in.dart";
-
+import 'package:expensy_common/expensy_common.dart' ;
 class ExpensyFirebaseAuth {
   //Firebase auth instance
   FirebaseAuth? _firebaseAuth;
@@ -17,11 +17,8 @@ class ExpensyFirebaseAuth {
     _firebaseAuth ??= FirebaseAuth.instance;
   }
 
-  //get current user
-  User? getCurrentUser() => _firebaseAuth?.currentUser;
-
   //get authentication state
-  Stream<User?>? getAuthStateChanges() => _firebaseAuth?.authStateChanges();
+  //Stream<User?>? getAuthStateChanges() => _firebaseAuth?.authStateChanges();
 
   //Sign in
   Future<void> signWithEmailAndPassword({
@@ -122,13 +119,27 @@ class ExpensyFirebaseAuth {
 
 
   Future<void> signOut() async {
-    try{
       await _firebaseAuth?.signOut();
-    }catch(err){
-
-    }
   }
 
+// Get the current user
+  User? getCurrentUser() {
+    final firebaseUser = _firebaseAuth?.currentUser;
+    if (firebaseUser == null) return null;
 
+    return User()
+      ..setFullName(firebaseUser.displayName)
+      ..setEmail(firebaseUser.email);
+  }
+
+  Stream<User?> authStateChanges() {
+    return _firebaseAuth!.authStateChanges().map((firebaseUser) {
+      if (firebaseUser == null) return null;
+
+      return User()
+        ..setFullName(firebaseUser.displayName)
+        ..setEmail(firebaseUser.email);
+    });
+  }
 
 }

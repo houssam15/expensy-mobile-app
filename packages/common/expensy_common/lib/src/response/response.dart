@@ -1,7 +1,8 @@
 class ExpensyCommonResponse {
+
   List<dynamic> _metaDataList = [];
-  bool _isHaveError = false;
-  bool _isSignoutFailed = false;
+  bool _isHaveUnknownError = false;
+  bool _isSignOutFailed = false;
   bool _isSignOutSuccess = false;
 
   void addMetaData(dynamic metaData){
@@ -12,20 +13,20 @@ class ExpensyCommonResponse {
     return _metaDataList;
   }
 
-  void setIsHaveError(bool isHaveError){
-    _isHaveError = isHaveError;
+  void setIsHaveUnknownError(bool isHaveUnknownError){
+    _isHaveUnknownError = isHaveUnknownError;
   }
 
-  bool isHaveError(){
-    return _isHaveError;
+  bool isHaveUnknownError(){
+    return _isHaveUnknownError;
   }
 
   void setIsSignOutFailed(bool isSignOutFailed){
-    _isSignoutFailed = isSignOutFailed;
+    _isSignOutFailed = isSignOutFailed;
   }
 
   bool isSignOutFailed(){
-    return _isSignoutFailed;
+    return _isSignOutFailed;
   }
 
   void setIsSignOutSuccess(bool isSignOutSuccess){
@@ -35,6 +36,5 @@ class ExpensyCommonResponse {
   bool isSignOutSuccess(){
     return _isSignOutSuccess;
   }
-
 
 }

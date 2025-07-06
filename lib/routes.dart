@@ -1,4 +1,5 @@
 import "package:expensy_common/expensy_common.dart";
+import "package:expensy_layouts/expensy_layouts.dart";
 import "package:flutter/material.dart";
 import "package:expensy_splash_presentation/expensy_splash_presentation.dart";
 import "package:expensy_welcome_presentation/expensy_welcome_presentation.dart";
@@ -48,6 +49,10 @@ class AppRouting {
     return ExpensyCommonAppRoutes.settingsRoute;
   }
 
+  String getMainLayoutRoute(){
+    return ExpensyCommonAppRoutes.mainLayoutRoute;
+  }
+
   Map<String, Widget Function(BuildContext)> getRoutes(){
     return {
       ExpensyCommonAppRoutes.welcomeRoute: (context) => ExpensyWelcomePresentation(),
@@ -58,6 +63,7 @@ class AppRouting {
       ExpensyCommonAppRoutes.expensesListItemDetailsRoute: (context) => ExpensyExpensesListItemDetailsPresentation(),
       ExpensyCommonAppRoutes.expensesAddNewExpenseFormRoute: (context) => ExpensyExpensesAddNewExpenseFormPresentation(),
       ExpensyCommonAppRoutes.settingsRoute: (context) => ExpensySettingsPresentation(),
+      ExpensyCommonAppRoutes.mainLayoutRoute: (context) => ExpensyLayoutsMainLayout()
     };
   }
 

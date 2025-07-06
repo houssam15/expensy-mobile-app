@@ -1,1 +1,1 @@
-export "sign_up_view.dart";
+export "dashboard_view.dart";
