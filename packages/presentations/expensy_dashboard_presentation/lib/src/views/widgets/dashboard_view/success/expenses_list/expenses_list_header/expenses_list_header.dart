@@ -14,7 +14,7 @@ class ExpensyDashboardPresentationViewSuccessPageExpensesListHeader extends Stat
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           ExpensyDashboardPresentationViewSuccessPageExpensesListHeaderLabel(),
-          ExpensyDashboardPresentationViewSuccessPageExpensesListHeaderIconButton()
+          //ExpensyDashboardPresentationViewSuccessPageExpensesListHeaderIconButton()
         ]
       ),
     );

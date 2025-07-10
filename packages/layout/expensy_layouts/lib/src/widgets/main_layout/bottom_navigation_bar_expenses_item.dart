@@ -14,18 +14,22 @@ class ExpensyLayoutsMainLayoutBottomNavigationBarExpensesItem extends StatelessW
     return Container(
       height: 50,
       width: MediaQuery.of(context).size.width/3,
-      color: Colors.white,
+      color: Theme.of(context).extension<ExpensyLayoutsColors>()?.expensesButtonBackgroundColor,
       margin: EdgeInsets.all(5),
       child: Column(
         children: [
           Icon(
               Icons.list,
-              color: isSelected ? Colors.black : Colors.grey,
+              color: isSelected
+                  ? Theme.of(context).extension<ExpensyLayoutsColors>()?.expensesButtonIconColor
+                  : Colors.grey,
           ),
           Text(
               "Expenses",
               style: TextStyle(
-                  color: isSelected ? Colors.black : Colors.grey
+                  color: isSelected
+                      ? Theme.of(context).extension<ExpensyLayoutsColors>()?.expensesButtonIconColor
+                      : Colors.grey
               ),
           )
         ],

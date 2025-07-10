@@ -1,3 +1,4 @@
+import "package:expensy_common/expensy_common.dart";
 import "package:expensy_layouts/src/blocs/blocs.dart";
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
@@ -15,7 +16,7 @@ class ExpensyLayoutsMainLayoutBottomNavigationBar extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border(
           top: BorderSide(
-            color: Colors.grey.withOpacity(0.5), // border color
+            color: Theme.of(context).extension<ExpensyLayoutsColors>()?.bottomMenuTopBorderColor ?? Colors.transparent, // border color
             width: 1.0,         // border width
           ),
         ),

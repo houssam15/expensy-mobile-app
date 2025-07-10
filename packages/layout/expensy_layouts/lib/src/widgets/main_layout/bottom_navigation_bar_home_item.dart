@@ -14,18 +14,22 @@ class ExpensyLayoutsMainLayoutBottomNavigationBarHomeItem extends StatelessWidge
     return Container(
       height: 50,
       width: MediaQuery.of(context).size.width/3,
-      color: Colors.white,
+      color: Theme.of(context).extension<ExpensyLayoutsColors>()?.homeButtonBackgroundColor,
       margin: EdgeInsets.all(5),
       child: Column(
         children: [
           Icon(
               Icons.home,
-              color: isSelected ? Colors.black : Colors.grey,
+            color: isSelected
+                ? Theme.of(context).extension<ExpensyLayoutsColors>()?.homeButtonIconColor
+                : Colors.grey,
           ),
           Text(
               "Home",
               style: TextStyle(
-                color: isSelected ? Colors.black : Colors.grey
+                color: isSelected
+                    ? Theme.of(context).extension<ExpensyLayoutsColors>()?.homeButtonIconColor
+                    : Colors.grey,
               ),
           )
         ],

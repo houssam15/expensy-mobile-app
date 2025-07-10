@@ -6,8 +6,8 @@ class ExpensyDashboardPresentationViewSuccessPageExpensesListHeaderLabel extends
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Padding(
-        padding: const EdgeInsets.only(left: 30),
+      child: Container(
+        //padding: const EdgeInsets.only(left: 30),
         child: Text(
           "Latest expenses",
           style: TextStyle(

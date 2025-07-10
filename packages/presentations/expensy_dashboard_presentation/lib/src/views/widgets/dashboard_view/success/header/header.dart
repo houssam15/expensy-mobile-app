@@ -6,6 +6,7 @@ import "package:flutter_svg/flutter_svg.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
 import "header_logo.dart";
 import "header_profile.dart";
+import "header_actions.dart";
 
 class ExpensyDashboardPresentationViewSuccessPageHeader extends StatelessWidget {
   const ExpensyDashboardPresentationViewSuccessPageHeader({super.key});
@@ -19,7 +20,7 @@ class ExpensyDashboardPresentationViewSuccessPageHeader extends StatelessWidget 
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           ExpensyDashboardPresentationViewSuccessPageHeaderLogo(),
-          ExpensyDashboardPresentationViewSuccessPageHeaderProfile()
+          ExpensyDashboardPresentationViewSuccessPageHeaderActions(),
         ],
       ),
     );

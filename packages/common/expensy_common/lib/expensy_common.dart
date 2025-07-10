@@ -6,3 +6,4 @@ export "src/models/models.dart";
 export "src/response/response.dart";
 export "src/request/request.dart";
 export "src/enums/enums.dart";
+export "src/widgets/widgets.dart";

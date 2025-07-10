@@ -1,3 +1,4 @@
+import "package:expensy_common/expensy_common.dart";
 import "package:flutter/material.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
 
@@ -11,13 +12,13 @@ class ExpensyDashboardPresentationViewSuccessPageExpensesListHeaderIconButton ex
         height: 30,
         padding: EdgeInsets.all(5),
         decoration: BoxDecoration(
-          color: Colors.black,
+          color: Theme.of(context).extension<ExpensyDashboardColors>()?.listHeaderIconColorBackground,
           borderRadius: BorderRadius.circular(25)
         ),
         child: Center(
           child: Icon(
               FontAwesomeIcons.angleRight,
-              color: Colors.white,
+              color: Theme.of(context).extension<ExpensyDashboardColors>()?.listHeaderIconButton,
               size: 20
           ),
         )

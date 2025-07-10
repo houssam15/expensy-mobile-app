@@ -9,7 +9,10 @@ dependencies:
   flutter:
     sdk: flutter
   expensy_common:
-    path: ../../common/expensy_common    
+    path: ../../common/expensy_common
+  loading_animation_widget: ^1.3.0
+  flutter_bloc: ^9.1.1
+  equatable: ^2.0.7
 dev_dependencies:
   flutter_test:
     sdk: flutter

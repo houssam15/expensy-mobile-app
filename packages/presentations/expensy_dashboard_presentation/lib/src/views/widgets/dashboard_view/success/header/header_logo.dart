@@ -10,12 +10,14 @@ class ExpensyDashboardPresentationViewSuccessPageHeaderLogo extends StatelessWid
 
   @override
   Widget build(BuildContext context) {
-    return SvgPicture.asset(
-      context.read<ExpensyCommonAppThemeBloc>().state.isDark()
-          ?"assets/images/logo-dark.svg"
-          :"assets/images/logo-light.svg",
-      package: context.read<ExpensyDashboardPresentationRemoteBloc>().getConfig().commonPackageName,
-      width: 120,
+    return BlocBuilder<ExpensyCommonAppThemeBloc, ExpensyCommonAppThemeState>(
+      builder: (_,_) => SvgPicture.asset(
+        context.read<ExpensyCommonAppThemeBloc>().state.isDark()
+            ?"assets/images/logo-dark.svg"
+            :"assets/images/logo-light.svg",
+        package: context.read<ExpensyDashboardPresentationRemoteBloc>().getConfig().commonPackageName,
+        width: 60
+      ),
     );
   }
 }

@@ -17,11 +17,11 @@ class ExpensyLayoutsMainLayoutBottomNavigationBarAddItem extends StatelessWidget
         height: 50,
         width: 50,
         decoration: BoxDecoration(
-            color: Colors.purple,
+            color: Theme.of(context).extension<ExpensyLayoutsColors>()?.addButtonBackgroundColor,
             borderRadius: BorderRadius.circular(10)
         ),
         margin: EdgeInsets.all(5),
-        child: Icon(Icons.add,color: Colors.white)
+        child: Icon(Icons.add,color: Theme.of(context).extension<ExpensyLayoutsColors>()?.addButtonIconColor)
       ),
     );
   }

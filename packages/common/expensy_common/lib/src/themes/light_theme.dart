@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'base_theme.dart';
-import 'extensions.dart';
+import 'colors/colors.dart';
 
 class ExpensyCommonLightTheme {
   ThemeData _themeData = ThemeData(
@@ -32,6 +32,20 @@ class ExpensyCommonLightTheme {
           extraOptionBackgroundButtonColor : Colors.white,
           extraOptionsButtonTextColor : Colors.black,
           goToSignUpDonNotHaveAccountColor : Colors.black
+      ),
+      const ExpensyDashboardColors(
+          listHeaderIconButton: Colors.black,
+          listHeaderIconColorBackground: Colors.white,
+          recentElementsPreviewItem: Colors.black,
+          recentElementsPreviewItemBackground: Colors.white,
+          profileSelectedMonthButton: Colors.black,
+          profileSelectedMonthButtonBackground: Colors.white
+      ),
+      const ExpensyLayoutsColors(
+        homeButtonIconColor: Colors.black,
+        homeButtonBackgroundColor: Colors.white,
+        expensesButtonIconColor: Colors.black,
+        expensesButtonBackgroundColor: Colors.white
       )
     ]
   );
