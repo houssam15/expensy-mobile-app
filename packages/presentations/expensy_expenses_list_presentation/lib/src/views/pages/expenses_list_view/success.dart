@@ -12,7 +12,7 @@ class ExpensyExpensesListPresentationViewSuccessPage extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-
+            ExpensyExpensesListPresentationViewSuccessPageBody()
           ],
         ),
       ),
