@@ -1,6 +1,6 @@
 part of "use_case.dart";
 
-class ExpensyDashboardRemoteDataSourceGetRecentExpensesRequest extends ExpensyCommonRequest{
+class ExpensyExpensesListRemoteDataSourceGetExpensesListRequest extends ExpensyCommonRequest{
 
   User? _user;
 

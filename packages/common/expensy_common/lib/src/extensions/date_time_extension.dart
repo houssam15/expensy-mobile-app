@@ -1,6 +1,6 @@
 extension DateTimeMapping on DateTime {
 
-  String? formatToMonthDay(){
+  String formatToMonthDay(){
 
     const months = [
       "January", "February", "March", "April", "May", "June",

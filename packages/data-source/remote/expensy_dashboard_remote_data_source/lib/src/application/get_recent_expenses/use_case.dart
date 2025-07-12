@@ -1,6 +1,5 @@
 import "package:expensy_common/expensy_common.dart";
 import "package:expensy_firebase/expensy_firebase.dart";
-import "../../models/models.dart";
 
 part "request.dart";
 part "response.dart";
@@ -18,7 +17,7 @@ class ExpensyDashboardRemoteDataSourceGetRecentExpensesUseCase {
 
       response.addMetaData(instance);
 
-      response.setItems(await ExpensyDashboardRemoteDataSourceExpense.toList(instance.getDocument()));
+      response.setItems(await ExpensyExpense.toList(instance.getDocument()));
 
     }on ExpensyFirebaseFirestoreException catch (e){
 

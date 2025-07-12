@@ -8,7 +8,7 @@ class ExpensyDashboardPresentationRemoteState extends Equatable {
 
   ExpensyDashboardPresentationRemoteStatus _status;
   User _user;
-  List<ExpensyDashboardRemoteDataSourceExpense> _recentExpenses;
+  List<ExpensyExpense> _recentExpenses;
   bool _cantGetRecentExpenses;
   bool _cantGetUser;
   double _currentMonthTotal;
@@ -19,7 +19,7 @@ class ExpensyDashboardPresentationRemoteState extends Equatable {
 
   ExpensyDashboardPresentationRemoteState({
     ExpensyDashboardPresentationRemoteStatus? status,
-    List<ExpensyDashboardRemoteDataSourceExpense>? recentExpenses,
+    List<ExpensyExpense>? recentExpenses,
     bool? cantGetRecentExpenses,
     User? user,
     bool? cantGetUser,
@@ -42,7 +42,7 @@ class ExpensyDashboardPresentationRemoteState extends Equatable {
 
   ExpensyDashboardPresentationRemoteState copyWith({
     ExpensyDashboardPresentationRemoteStatus? status,
-    List<ExpensyDashboardRemoteDataSourceExpense>? recentExpenses,
+    List<ExpensyExpense>? recentExpenses,
     bool? cantGetRecentExpenses,
     User? user,
     bool? cantGetUser,
@@ -68,7 +68,7 @@ class ExpensyDashboardPresentationRemoteState extends Equatable {
 
   ExpensyDashboardPresentationRemoteStatus getStatus() => _status;
 
-  List<ExpensyDashboardRemoteDataSourceExpense> getRecentExpenses() => _recentExpenses;
+  List<ExpensyExpense> getRecentExpenses() => _recentExpenses;
 
   bool cantGetRecentExpenses() => _cantGetRecentExpenses;
 
