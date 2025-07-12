@@ -46,8 +46,10 @@ class ExpensyCommonDarkTheme {
           homeButtonBackgroundColor: Colors.black,
           expensesButtonIconColor: Colors.white,
           expensesButtonBackgroundColor: Colors.black
+      ),
+      const ExpensyCommonColors(
+        expenseItemCardBackground: Colors.black
       )
-
     ]
   );
 

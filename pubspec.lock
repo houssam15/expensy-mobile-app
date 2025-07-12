@@ -162,6 +162,13 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
+  expensy_expenses_list_remote_data_source:
+    dependency: transitive
+    description:
+      path: "packages/data-source/remote/expensy_expenses_list_remote_data_source"
+      relative: true
+    source: path
+    version: "0.0.1"
   expensy_firebase:
     dependency: "direct main"
     description:

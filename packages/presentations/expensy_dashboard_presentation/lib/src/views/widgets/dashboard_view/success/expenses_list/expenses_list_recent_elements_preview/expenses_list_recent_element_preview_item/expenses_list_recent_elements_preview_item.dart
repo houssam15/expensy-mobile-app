@@ -10,25 +10,11 @@ class ExpensyDashboardPresentationViewSuccessPageExpensesListRecentElementsPrevi
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: Theme.of(context).extension<ExpensyDashboardColors>()?.recentElementsPreviewItemBackground,
-      elevation: 1,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-        side: BorderSide(
-          color: Colors.white30,
-          width: 2,
-        )
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
+    return ExpensyExpensesListItem(
           children: [
             ExpensyDashboardPresentationViewSuccessPageExpensesListRecentElementsPreviewItemHeader(index),
             ExpensyDashboardPresentationViewSuccessPageExpensesListRecentElementsPreviewItemExpenseCategoriesList(index),
-          ],
-        ),
-      ),
+          ]
     );
   }
 

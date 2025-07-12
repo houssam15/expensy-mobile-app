@@ -6,12 +6,13 @@ class ExpensyExpensesListPresentationViewSuccessPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Padding(
+    return Scaffold(
+      body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 15),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
+            ExpensyExpensesListPresentationViewSuccessPageHeader(),
             ExpensyExpensesListPresentationViewSuccessPageBody()
           ],
         ),

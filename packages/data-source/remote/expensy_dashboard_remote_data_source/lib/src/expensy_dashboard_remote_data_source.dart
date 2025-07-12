@@ -1,4 +1,4 @@
-import "application/get_recent_expenses/use-case.dart";
+import "application/get_recent_expenses/use_case.dart";
 import "application/get_total_expenses_amount/use-case.dart";
 
 class ExpensyDashboardRemoteDataSource {

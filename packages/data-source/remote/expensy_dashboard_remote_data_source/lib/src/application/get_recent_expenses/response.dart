@@ -1,4 +1,4 @@
-part of "use-case.dart";
+part of "use_case.dart";
 
 enum ExpensyDashboardRemoteDataSourceGetRecentExpensesResponseErrors{
   others,
@@ -9,14 +9,14 @@ enum ExpensyDashboardRemoteDataSourceGetRecentExpensesResponseErrors{
 class ExpensyDashboardRemoteDataSourceGetRecentExpensesResponse extends ExpensyCommonResponse{
 
   ExpensyDashboardRemoteDataSourceGetRecentExpensesResponseErrors? _error;
-  List<ExpensyDashboardRemoteDataSourceExpense>? _items;
+  List<ExpensyExpense>? _items;
 
   void setError(ExpensyDashboardRemoteDataSourceGetRecentExpensesResponseErrors? error) => _error = error;
-  void setItems(List<ExpensyDashboardRemoteDataSourceExpense>? items) => _items = items;
+  void setItems(List<ExpensyExpense>? items) => _items = items;
 
   ExpensyDashboardRemoteDataSourceGetRecentExpensesResponseErrors? getError() => _error;
   bool isSuccess() => _error == null;
   bool hasError() => _error!=null || isHaveUnknownError();
-  List<ExpensyDashboardRemoteDataSourceExpense>? getItems() => _items;
+  List<ExpensyExpense>? getItems() => _items;
 
 }

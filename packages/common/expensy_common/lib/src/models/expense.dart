@@ -2,35 +2,35 @@ import "package:flutter/foundation.dart";
 import 'package:cloud_firestore/cloud_firestore.dart';
 import "expense_category_total.dart";
 
-class ExpensyDashboardRemoteDataSourceExpense {
+class ExpensyExpense {
   String? _id;
   DateTime? _createdAt;
   double? _total;
-  List<ExpensyDashboardRemoteDataSourceExpenseCategoryTotal>? _expenseCategories;
+  List<ExpensyExpenseCategoryTotal>? _expenseCategories;
 
   void setId(String? id) => _id = id;
   void setCreatedAt(DateTime? createdAt) => _createdAt = createdAt;
   void setTotal(double? total) => _total = total;
   void setExpenseCategories(
-      List<ExpensyDashboardRemoteDataSourceExpenseCategoryTotal>? categories,
+      List<ExpensyExpenseCategoryTotal>? categories,
       ) =>
       _expenseCategories = categories;
 
   String? getId() => _id;
-  DateTime? getCreatedAt() => _createdAt;
-  double? getTotal() => _total;
-  List<ExpensyDashboardRemoteDataSourceExpenseCategoryTotal>? getExpenseCategories() => _expenseCategories;
+  DateTime getCreatedAt() => _createdAt ?? DateTime.now();
+  double getTotal() => _total ?? 0;
+  List<ExpensyExpenseCategoryTotal> getExpenseCategories() => _expenseCategories ?? [];
 
-  static Future<List<ExpensyDashboardRemoteDataSourceExpense>> toList(dynamic data) async{
-    List<ExpensyDashboardRemoteDataSourceExpense> items = [];
+  static Future<List<ExpensyExpense>> toList(dynamic data) async{
+    List<ExpensyExpense> items = [];
     try{
       for(var doc in data.docs){
         items.add(
-            ExpensyDashboardRemoteDataSourceExpense()
+            ExpensyExpense()
               ..setId(doc.id)
               ..setCreatedAt((doc.data()["createdAt"] as Timestamp).toDate())
               ..setTotal((doc.data()['total'] as num).toDouble())
-              ..setExpenseCategories(await ExpensyDashboardRemoteDataSourceExpenseCategoryTotal.toList(doc.data()['expenseCategories']))
+              ..setExpenseCategories(await ExpensyExpenseCategoryTotal.toList(doc.data()['expenseCategories']))
         );
       }
     }catch(err){

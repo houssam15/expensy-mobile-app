@@ -1,7 +1,6 @@
 import "package:expensy_common/expensy_common.dart";
 import "package:expensy_firebase/expensy_firebase.dart";
 import "../../../expensy_dashboard_remote_data_source.dart";
-import "../../models/models.dart";
 
 part "request.dart";
 part "response.dart";
