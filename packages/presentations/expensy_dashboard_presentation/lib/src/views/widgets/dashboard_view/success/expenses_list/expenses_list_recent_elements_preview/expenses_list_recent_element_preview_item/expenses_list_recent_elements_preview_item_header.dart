@@ -4,6 +4,7 @@ import "package:flutter_bloc/flutter_bloc.dart";
 import "../../../../../../../blocs/remote/bloc.dart";
 
 class ExpensyDashboardPresentationViewSuccessPageExpensesListRecentElementsPreviewItemHeader extends StatelessWidget {
+
   const ExpensyDashboardPresentationViewSuccessPageExpensesListRecentElementsPreviewItemHeader(this.index,{super.key});
 
   final int index;
@@ -15,7 +16,7 @@ class ExpensyDashboardPresentationViewSuccessPageExpensesListRecentElementsPrevi
     final state = bloc.state;
 
     return ExpensyExpensesListItemHeader(
-      createdAt: state.getRecentExpenses()[index].getCreatedAt().formatToMonthDay(),
+      createdAt: state.getRecentExpenses()[index].getCreatedAt()?.formatToMonthDay() ?? "__/__/____",
       total: state.getRecentExpenses()[index].getTotal()
     );
   }

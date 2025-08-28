@@ -17,7 +17,7 @@ class ExpensyExpensesListRemoteDataSourceGetExpensesListUseCase {
 
       response.addMetaData(instance);
 
-      response.setItems(await ExpensyExpense.toList(instance.getDocument()));
+      response.setItems(await ExpensyExpense.toList(instance.getDocument()?.docs));
 
     }on ExpensyFirebaseFirestoreException catch (e){
 

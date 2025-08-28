@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ExpensyExpenseCategory {
   String? _name;
@@ -13,17 +14,19 @@ class ExpensyExpenseCategory {
   String getDescription() => _description ?? "";
   String getCategoryPictureLink() => _categoryPictureLink ?? "";
 
-  static ExpensyExpenseCategory fromJson(dynamic data){
-    ExpensyExpenseCategory category = ExpensyExpenseCategory();
-    try{
-      category
-        ..setName(data.data()["name"])
-        ..setDescription(data.data()["description"])
-        ..setCategoryPictureLink(data.data()["categoryPictureLink"]);
 
-    }catch(err){
-      if(kDebugMode) print(err);
+  static Future<ExpensyExpenseCategory> fromJson(DocumentReference? docRef) async{
+    var doc = await docRef?.get();
+
+    if (doc == null) {
+      throw Exception("Document data is null for document ID: ${doc?.id}");
     }
-    return category;
+
+    return ExpensyExpenseCategory()
+      ..setName(doc.get("name"))
+      ..setDescription(doc.get("description"))
+      ..setCategoryPictureLink(doc.get("categoryPictureLink"));
   }
+
+
 }

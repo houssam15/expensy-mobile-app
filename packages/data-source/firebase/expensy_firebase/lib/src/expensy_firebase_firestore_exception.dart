@@ -1,7 +1,10 @@
 enum ExpensyFirebaseFirestoreExceptionCode {
   collectionNotFound,
   canGetDocuments,
-  cantFilterDocuments
+  cantFilterDocuments,
+  invalidDocumentId,
+  documentNotFound,
+  cantGetDocument
 }
 
 class ExpensyFirebaseFirestoreException implements Exception{
