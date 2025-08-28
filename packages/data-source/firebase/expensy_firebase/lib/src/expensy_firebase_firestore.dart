@@ -10,13 +10,14 @@ class ExpensyFirebaseStore {
   CollectionReference<Map<String, dynamic>>? _loadedCollection;
   //Contain multiple documents
   QuerySnapshot<Map<String, dynamic>>? _querySnapshot;
+  DocumentSnapshot? _documentSnapshot;
   Query<Map<String, dynamic>>? _query;
 
-  //Initialize firebase store
   void initializeFirebaseStore() => _firebaseStore ??= FirebaseFirestore.instance;
 
   bool hasError() => _hasError;
   QuerySnapshot<Map<String, dynamic>>? getDocument() => _querySnapshot;
+  DocumentSnapshot? get documentSnapshot => _documentSnapshot;
 
   void loadCollection(String name){
     try{
@@ -94,4 +95,30 @@ class ExpensyFirebaseStore {
   }
 
 
+  CollectionReference? getCollection() => _loadedCollection;
+  FirebaseFirestore? getInstance() => _firebaseStore;
+
+
+  Future<void> loadDocumentById(String? id) async {
+    if (id == null || id.isEmpty) {
+      throw ExpensyFirebaseFirestoreException()
+        ..setCode(ExpensyFirebaseFirestoreExceptionCode.invalidDocumentId);
+    }
+
+    try{
+      var docSnapshot = await _loadedCollection?.doc(id).get();
+      if (docSnapshot == null || !docSnapshot.exists) {
+        throw ExpensyFirebaseFirestoreException()
+          ..setCode(ExpensyFirebaseFirestoreExceptionCode.documentNotFound);
+      }
+
+      _documentSnapshot = docSnapshot;
+
+    }catch(err){
+
+      throw ExpensyFirebaseFirestoreException()
+        ..setCode(ExpensyFirebaseFirestoreExceptionCode.cantGetDocument);
+
+    }
+  }
 }

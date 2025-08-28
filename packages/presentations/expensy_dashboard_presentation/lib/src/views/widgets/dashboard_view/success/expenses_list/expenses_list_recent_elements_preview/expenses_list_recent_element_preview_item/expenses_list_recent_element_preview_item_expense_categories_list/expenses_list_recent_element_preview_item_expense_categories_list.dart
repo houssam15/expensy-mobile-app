@@ -29,7 +29,7 @@ class ExpensyDashboardPresentationViewSuccessPageExpensesListRecentElementsPrevi
           mainAxisSpacing: 2,
           childAspectRatio: 5 / 3,
         ),
-        itemCount: context.read<ExpensyDashboardPresentationRemoteBloc>().state.getRecentExpenses()[index].getExpenseCategories()?.length,
+        itemCount: context.read<ExpensyDashboardPresentationRemoteBloc>().state.getRecentExpenses()[index].getExpenseCategoriesTotal()?.length,
         shrinkWrap: true,
         itemBuilder: (context, expenseCategoryIndex) {
           return ExpensyDashboardPresentationViewSuccessPageExpensesListRecentElementsPreviewItemExpenseCategoriesListItem(

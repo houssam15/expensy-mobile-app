@@ -12,7 +12,7 @@ class ExpensyDashboardPresentationViewSuccessPageExpensesListRecentElementsPrevi
   @override
   Widget build(BuildContext context) {
 
-    var category = context.read<ExpensyDashboardPresentationRemoteBloc>().state.getRecentExpenses()[expenseIndex].getExpenseCategories()?[expenseCategoryIndex];
+    var category = context.read<ExpensyDashboardPresentationRemoteBloc>().state.getRecentExpenses()[expenseIndex].getExpenseCategoriesTotal()?[expenseCategoryIndex];
 
     return Container(
       decoration: BoxDecoration(
@@ -35,7 +35,7 @@ class ExpensyDashboardPresentationViewSuccessPageExpensesListRecentElementsPrevi
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                    "${category?.getCategory()?.getName()}",
+                    "${category?.getCategory().getName()}",
                     style: TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.w900,
@@ -45,7 +45,7 @@ class ExpensyDashboardPresentationViewSuccessPageExpensesListRecentElementsPrevi
                 ),
                 SizedBox(height: 15),
                 Text(
-                    "${category?.getCategory()?.getDescription()}",
+                    "${category?.getCategory().getDescription()}",
                     style: TextStyle(
                         fontSize: 10,
                         color: Colors.grey
@@ -66,7 +66,7 @@ class ExpensyDashboardPresentationViewSuccessPageExpensesListRecentElementsPrevi
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     image: DecorationImage(
-                      image: NetworkImage("${category?.getCategory()?.getCategoryPictureLink()}"),
+                      image: NetworkImage("${category?.getCategory().getCategoryPictureLink()}"),
                       fit: BoxFit.cover,
                     ),
                   ),

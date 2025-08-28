@@ -13,7 +13,16 @@ class ExpensyExpensesListPresentationViewSuccessPageBodyItem extends StatelessWi
   @override
   Widget build(BuildContext context) {
 
+    final bloc = context.read<ExpensyExpensesListPresentationRemoteBloc>();
+    final state = bloc.state;
+
     return ExpensyExpensesListItem(
+      onTap: () => Navigator.of(context).pushNamed(
+          ExpensyCommonAppRoutes.expensesListItemDetailsRoute,
+          arguments: {
+            "expenseId" : state.getExpensesList()[index].getId()
+          }
+      ),
       children: [
         ExpensyExpensesListPresentationViewSuccessPageBodyItemHeader(index),
         ExpensyExpensesListPresentationViewSuccessPageBodyItemContent(index)

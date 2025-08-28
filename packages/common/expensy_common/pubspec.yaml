@@ -16,7 +16,8 @@ dependencies:
   expensy_authentication_remote_data_source:
     path: ../../data-source/remote/expensy_authentication_remote_data_source
   font_awesome_flutter: ^10.8.0
-
+  expensy_firebase:
+    path: ../../data-source/firebase/expensy_firebase
 dev_dependencies:
   flutter_test:
     sdk: flutter

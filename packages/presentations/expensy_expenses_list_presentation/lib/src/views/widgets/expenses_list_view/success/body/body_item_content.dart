@@ -22,12 +22,12 @@ class ExpensyExpensesListPresentationViewSuccessPageBodyItemContent extends Stat
           top: BorderSide(
             color: Colors.grey.withOpacity(0.5),
             width: 1
-          )
-        )
+          ),
+        ),
       ),
       child: ListView.builder(
           shrinkWrap: true,
-          itemCount: state.getExpensesList()[index].getExpenseCategories().length,
+          itemCount: state.getExpensesList()[index].getExpenseCategoriesTotal()?.length ?? 0,
           itemBuilder: (context, categoryIndex) => ExpensyExpensesListPresentationViewSuccessPageBodyItemContentCategoryOverview(
             expenseIndex: index,
             categoryIndex: categoryIndex
