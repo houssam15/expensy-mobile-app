@@ -67,7 +67,6 @@ class ExpensyFirebaseStore {
   }
 
 
-
   Future<void> loadDocument() async {
     try{
 

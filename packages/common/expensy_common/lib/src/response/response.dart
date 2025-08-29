@@ -1,4 +1,6 @@
-class ExpensyCommonResponse {
+import "package:equatable/equatable.dart";
+
+class ExpensyCommonResponse extends Equatable{
 
   List<dynamic> _metaDataList = [];
   bool _isHaveUnknownError = false;
@@ -36,5 +38,8 @@ class ExpensyCommonResponse {
   bool isSignOutSuccess(){
     return _isSignOutSuccess;
   }
+
+  @override
+  List<Object?> get props => [_metaDataList,_isHaveUnknownError,_isSignOutFailed,_isSignOutSuccess];
 
 }

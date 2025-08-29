@@ -9,7 +9,11 @@ dependencies:
   flutter:
     sdk: flutter
   expensy_common:
-    path: ../../common/expensy_common  
+    path: ../../common/expensy_common
+  expensy_add_new_expense_data_source_remote:
+    path: ../../data-source/remote/expensy_add_new_expense_data_source_remote
+  flutter_bloc: ^9.1.1
+  equatable: ^2.0.7
 dev_dependencies:
   flutter_test:
     sdk: flutter
