@@ -30,4 +30,5 @@ class ExpensyExpenseProduct {
 
     return items;
   }
+
 }

@@ -4,6 +4,7 @@ import "blocs/remote/bloc.dart";
 import "views/views.dart";
 
 class ExpensyExpensesAddNewExpenseFormPresentation extends StatelessWidget {
+
   ExpensyExpensesAddNewExpenseFormPresentation({super.key});
 
   @override
@@ -11,10 +12,15 @@ class ExpensyExpensesAddNewExpenseFormPresentation extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<RemoteBloc>(
-            create: (context) => RemoteBloc()..add(RemoteAddNewExpenseRequested(context))
+            create: (context) => RemoteBloc()
+                                 ..add(RemoteStarted(context))
+                                 //add today expense if not already created
+                                 ..add(RemoteAddNewExpenseRequested(context))
+                                 ..add(RemoteGetCategories(context))
         )
       ],
       child: ExpensyExpensesAddNewExpenseFormView()
     );
   }
+
 }

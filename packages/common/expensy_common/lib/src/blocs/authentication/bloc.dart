@@ -26,9 +26,6 @@ class ExpensyCommonAuthenticationBloc extends Bloc<ExpensyCommonAuthenticationEv
     return _remoteDataSource!;
   }
 
-
-
-
   _appStarted(ExpensyCommonAuthenticationAppStarted event , Emitter<ExpensyCommonAuthenticationState> emit) async{
     final response = await getRemoteDataSource().getCurrentUser();
     if(!response.isSuccess() || !response.hasUser()){

@@ -9,7 +9,7 @@ class ExpensyExpensesAddNewExpenseFormView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<RemoteBloc,RemoteState>(
-        builder: (context, state) => ExpensyExpensesAddNewExpenseFormViewSuccessPage(),
+        builder: (context, state) => ExpensyExpensesAddNewExpenseFormViewSuccessPage()
     );
   }
 }

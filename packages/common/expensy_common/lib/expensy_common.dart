@@ -8,3 +8,4 @@ export "src/request/request.dart";
 export "src/enums/enums.dart";
 export "src/widgets/widgets.dart";
 export "src/extensions/extensions.dart";
+export "src/use_case/use_case.dart";

@@ -7,6 +7,7 @@ part "request.dart";
 part "response.dart";
 
 class GetExpenseDetailsUseCase {
+
   Future<GetExpenseDetailsResponse> execute(GetExpenseDetailsRequest request) async {
     GetExpenseDetailsResponse response = GetExpenseDetailsResponse();
     try{
@@ -86,4 +87,5 @@ class GetExpenseDetailsUseCase {
 
     return response;
   }
+
 }

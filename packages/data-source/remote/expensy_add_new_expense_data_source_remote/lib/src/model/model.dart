@@ -1,0 +1,1 @@
+export "product_extra_details.dart";
