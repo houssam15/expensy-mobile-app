@@ -25,7 +25,7 @@ class ExpensyLayoutsMainLayoutBottomNavigationBar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.center,
-        children: context.read<ExpensyLayoutsMainLayoutBloc>().state.getItems().map((elm) => elm).toList(),
+        children: context.read<ExpensyLayoutsMainLayoutBloc>().state.getItems().where((elm) => !elm.hideWhenSelected).map((elm) => elm).toList()
       ),
     );
   }

@@ -1,7 +1,9 @@
 import "package:expensy_common/expensy_common.dart";
 import "package:expensy_expenses_add_new_expense_form_presentation/src/views/widget/success/category_item.dart";
 import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
+import "../../pages/add_new_category/success.dart";
 import "../widget.dart";
 
 class ChooseProduct extends StatefulWidget {
@@ -86,7 +88,9 @@ class _ChooseProductState extends State<ChooseProduct> {
                     // Choose a category section
                     _buildSectionHeader(
                       title: "Choose a category",
-                      onAdd: () {},
+                      onAdd: () {
+                        _addNewCategory(context);
+                      },
                     ),
                     const SizedBox(height: 10),
 
@@ -240,7 +244,7 @@ class _ChooseProductState extends State<ChooseProduct> {
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                         ),
-                        child: const Text('Save product'),
+                        child: const Text('Save product')
                       ),
                     ),
 
@@ -286,5 +290,11 @@ class _ChooseProductState extends State<ChooseProduct> {
         ],
       ),
     );
+  }
+
+  _addNewCategory(BuildContext context){
+      //go to add category form
+      final result = Navigator.of(context).push(MaterialPageRoute(builder: (context) => AddNewCategorySuccessPage()));
+      print("Result : $result");
   }
 }

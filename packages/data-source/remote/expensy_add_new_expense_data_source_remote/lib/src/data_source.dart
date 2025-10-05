@@ -18,4 +18,8 @@ class DataSource {
     return AddProductToExpenseUseCase().execute(request ?? AddProductToExpenseRequest());
   }
 
+  Future<GetCurrentExpenseResponse> getCurrentExpense([GetCurrentExpenseRequest? request]){
+    return GetCurrentExpenseUseCase().execute(request ?? GetCurrentExpenseRequest());
+  }
+
 }

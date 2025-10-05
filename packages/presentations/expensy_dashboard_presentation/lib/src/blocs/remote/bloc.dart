@@ -12,6 +12,7 @@ class ExpensyDashboardPresentationRemoteBloc extends Bloc<ExpensyDashboardPresen
   ExpensyDashboardPresentationRemoteBloc():super(ExpensyDashboardPresentationRemoteState()){
     on<ExpensyDashboardPresentationRemoteStarted>(_onStarted);
     on<ExpensyDashboardPresentationRemoteSelectedMonthChanged>(_onSelectedMonthChanged);
+    on<ExpensyDashboardPresentationRemoteSignOutRequested>(_onSignOut);
   }
 
   ExpensyDashboardPresentationConfig? _config;
@@ -47,16 +48,14 @@ class ExpensyDashboardPresentationRemoteBloc extends Bloc<ExpensyDashboardPresen
             ..setDate(state.getLastFromSelectedMonth())
             ..setAggregationType(AggregationType.month)
       );
-
-      final recentExpenses = await getRemoteDataSource().getRecentExpenses(
+      /*final recentExpenses = await getRemoteDataSource().getRecentExpenses(
           ExpensyDashboardRemoteDataSourceGetRecentExpensesRequest()..setUser(user)
-      );
-
+      );*/
       emit(
         state.copyWith(
           status: ExpensyDashboardPresentationRemoteStatus.success,
-          cantGetRecentExpenses: recentExpenses.hasError(),
-          recentExpenses: recentExpenses.getItems(),
+          //cantGetRecentExpenses: recentExpenses.hasError(),
+          //recentExpenses: recentExpenses.getItems(),
           user: user,
           currentMonthTotal: currentMonthTotal.getTotal(),
           cantGetCurrentMonthTotal: currentMonthTotal.hasError(),
@@ -105,6 +104,12 @@ class ExpensyDashboardPresentationRemoteBloc extends Bloc<ExpensyDashboardPresen
     }catch(err){
 
     }
+  }
+
+  _onSignOut(ExpensyDashboardPresentationRemoteSignOutRequested event,Emitter<ExpensyDashboardPresentationRemoteState> emit) async {
+    try{
+
+    }catch(_){}
   }
 
 }

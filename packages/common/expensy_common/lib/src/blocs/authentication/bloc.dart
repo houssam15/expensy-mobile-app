@@ -15,6 +15,7 @@ class ExpensyCommonAuthenticationBloc extends Bloc<ExpensyCommonAuthenticationEv
     on<ExpensyCommonAuthenticationAppStarted>(_appStarted);
     on<ExpensyCommonAuthenticationAuthStateListenerRegistrationRequested>(_registerAuthStateChangesListener);
     on<ExpensyCommonAuthenticationUserChanged>(_onUserChanged);
+    on<ExpensyCommonAuthenticationSignOutRequested>(_onSignOutRequested);
   }
 
   final GlobalKey<NavigatorState> navigatorKey;
@@ -57,6 +58,13 @@ class ExpensyCommonAuthenticationBloc extends Bloc<ExpensyCommonAuthenticationEv
       emit(state.copyWith(status: ExpensyCommonAuthenticationStatus.authenticated,currentUser: event.user));
     }
   }
+
+  _onSignOutRequested(ExpensyCommonAuthenticationSignOutRequested event,Emitter<ExpensyCommonAuthenticationState> emit) async {
+    try{
+      await getRemoteDataSource().signOut();
+    }catch(_){}
+  }
+
 
   @override
   Future<void> close() {

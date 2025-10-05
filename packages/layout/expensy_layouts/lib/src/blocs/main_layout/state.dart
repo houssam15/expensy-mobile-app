@@ -29,6 +29,7 @@ class ExpensyLayoutsMainLayoutState extends Equatable{
       ),
       ExpensyLayoutsBottomNavigationBarItem(
         route: ExpensyCommonAppRoutes.expensesAddNewExpenseFormRoute,
+        hideWhenSelected: route == ExpensyCommonAppRoutes.expensesAddNewExpenseFormRoute,
         child: ExpensyLayoutsMainLayoutBottomNavigationBarAddItem(
           isSelected: route == ExpensyCommonAppRoutes.expensesAddNewExpenseFormRoute,
         ),

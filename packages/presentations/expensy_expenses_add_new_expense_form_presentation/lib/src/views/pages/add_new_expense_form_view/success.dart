@@ -4,6 +4,7 @@ import "package:expensy_expenses_add_new_expense_form_presentation/src/views/wid
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class ExpensyExpensesAddNewExpenseFormViewSuccessPage extends StatefulWidget {
   const ExpensyExpensesAddNewExpenseFormViewSuccessPage({super.key});
@@ -22,19 +23,22 @@ class _ExpensyExpensesAddNewExpenseFormViewSuccessPageState extends State<Expens
           borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
         ),
         builder: (_) => BlocProvider.value(
-          value: context.read<RemoteBloc>(),
-          child: BlocBuilder<RemoteBloc,RemoteState>(
-            builder:(_,state) => ChooseProduct(
-              categories : state.categories,
-              selectedCategory: state.selectedCategory,
-              selectedCategoryProducts: state.selectedCategoryProducts,
-              selectedProduct: state.selectedProduct,
-              onCategoryClicked: (category) => context.read<RemoteBloc>().add(RemoteGetCategoryProducts(context,category:category)),
-              onProductClicked: (product) => context.read<RemoteBloc>().add(RemoteProductSelected(context,product:product)),
-              onTotalChanged: (total) => context.read<RemoteBloc>().add(RemoteFormChanged(context,total:total)),
-              onSaveClicked: () => context.read<RemoteBloc>().add(RemoteSaveProductClicked(context)),
-            ),
-          )
+            value: context.read<RemoteBloc>(),
+            child: BlocBuilder<RemoteBloc,RemoteState>(
+              builder:(_,state) => ChooseProduct(
+                categories : state.categories,
+                selectedCategory: state.selectedCategory,
+                selectedCategoryProducts: state.selectedCategoryProducts,
+                selectedProduct: state.selectedProduct,
+                onCategoryClicked: (category) => context.read<RemoteBloc>().add(RemoteGetCategoryProducts(context,category:category)),
+                onProductClicked: (product) => context.read<RemoteBloc>().add(RemoteProductSelected(context,product:product)),
+                onTotalChanged: (total) => context.read<RemoteBloc>().add(RemoteFormChanged(context,total:total)),
+                onSaveClicked: (){
+                  context.read<RemoteBloc>().add(RemoteSaveProductClicked(context));
+                  Navigator.of(context,rootNavigator: true).pop();
+                },
+              ),
+            )
         )
     );
   }
@@ -42,81 +46,79 @@ class _ExpensyExpensesAddNewExpenseFormViewSuccessPageState extends State<Expens
   @override
   Widget build(BuildContext context) {
     final bloc = context.read<RemoteBloc>();
-    /*return ListView.builder(
-        itemCount: bloc.state.categories.length,
-        itemBuilder: (context, index) => CategoryItem(category: bloc.state.categories[index])
-    );*/
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Center(
-          child: InkWell(
-            onTap: _chooseProduct,
-            child: Container(
-                width: 200,
-                height: 50,
-                margin: EdgeInsets.all(5),
-                decoration: BoxDecoration(
-                  color: Colors.grey.withOpacity(0.2),
-                  borderRadius: BorderRadius.all(Radius.circular(10))
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                        FontAwesomeIcons.plus,
-                        size: 20,
-                    ),
-                    const SizedBox(width: 10),
-                    Text("New product")
-                  ],
-                )
-            ),
-          ),
-        ),
-        if(bloc.state.existingProducts.isNotEmpty)
-        ...[
-          Container(
-            width: double.infinity,
-            margin: EdgeInsets.all(5),
-            child: Text(
-              "Today existing products",
-              textAlign: TextAlign.start,
-              style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w900
-              ),
-            ),
-          ),
-          ListView.builder(
-              shrinkWrap: true,
-              itemCount: bloc.state.existingProducts.length,
-              itemBuilder: (context, index) => ExpenseProductItem(expenseProduct: bloc.state.existingProducts[index])
+    return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButton: FloatingActionButton(
+          child: bloc.state.isAddProductLoading
+              ? SizedBox(
+              width: 20,
+              height: 20,
+              child: CircularProgressIndicator(strokeWidth: 2)
           )
-        ],
-        if(bloc.state.newAddedProducts.isNotEmpty)
-          ...[
-            Container(
-              width: double.infinity,
-              margin: EdgeInsets.all(5),
-              child: Text(
-                "New added products",
-                textAlign: TextAlign.start,
-                style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w900
-                ),
+              : Icon(Icons.add),
+          backgroundColor: Colors.purple,
+          foregroundColor: Colors.white,
+          onPressed:_chooseProduct
+      ),
+      body: BlocBuilder<RemoteBloc, RemoteState>(
+        builder: (context, state) {
+          if (state.isLoading) {
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  LoadingAnimationWidget.threeArchedCircle(
+                      color: Colors.grey,
+                      size: 20
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    "loading...",
+                    style: TextStyle(color: Colors.grey),
+                  )
+                ],
               ),
-            ),
-            ListView.builder(
-                shrinkWrap: true,
-                itemCount: bloc.state.newAddedProducts.length,
-                itemBuilder: (context, index) => ExpenseProductItem(expenseProduct: bloc.state.newAddedProducts[index])
-            )
-          ]
+            );
+          }
 
-      ],
+          if (state.currentExpense?.getExpenseProducts()?.isNotEmpty == true) {
+            return Column(
+              children: [
+                const SizedBox(height: 20),
+                Container(
+                  width: double.infinity,
+                  margin: EdgeInsets.all(10),
+                  child: Text(
+                    "Today products",
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w900
+                    ),
+                  ),
+                ),
+                Expanded( // Now Expanded works because it's in a Column that's the direct child of Scaffold body
+                  child: ListView.builder(
+                      itemCount: (state.currentExpense?.getExpenseProducts()?.length ?? 0) + 1,
+                      itemBuilder: (context, index) {
+                        if (index == state.currentExpense!.getExpenseProducts()!.length) {
+                          return SizedBox(height: 100);
+                        }
+                        return ExpenseProductItem(
+                          expenseProduct: state.currentExpense!.getExpenseProducts()![index]
+                        );
+                      }
+                  ),
+                ),
+              ],
+            );
+          }
+
+          return Center(
+            child: Text("No products added yet !"),
+          );
+        },
+      ),
     );
   }
 }

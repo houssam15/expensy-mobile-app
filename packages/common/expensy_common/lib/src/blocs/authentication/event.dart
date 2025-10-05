@@ -10,3 +10,7 @@ class ExpensyCommonAuthenticationUserChanged  extends ExpensyCommonAuthenticatio
   final User? user;
   ExpensyCommonAuthenticationUserChanged(this.user);
 }
+
+class ExpensyCommonAuthenticationSignOutRequested extends ExpensyCommonAuthenticationEvent{
+  ExpensyCommonAuthenticationSignOutRequested();
+}

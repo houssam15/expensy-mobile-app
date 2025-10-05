@@ -72,7 +72,7 @@ class ProductItem extends StatelessWidget {
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
                     product.getName() ?? 'Unnamed Product',
@@ -82,6 +82,7 @@ class ProductItem extends StatelessWidget {
                     ),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
+                    textAlign: TextAlign.start,
                   ),
                   const SizedBox(height: 4),
                   Text(
@@ -92,6 +93,7 @@ class ProductItem extends StatelessWidget {
                     ),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
+                    textAlign: TextAlign.start,
                   ),
                 ],
               ),

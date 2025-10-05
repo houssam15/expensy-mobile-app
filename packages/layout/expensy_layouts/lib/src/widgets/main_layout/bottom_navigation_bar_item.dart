@@ -4,9 +4,11 @@ import "package:flutter_bloc/flutter_bloc.dart";
 import "../../blocs/blocs.dart";
 
 class ExpensyLayoutsBottomNavigationBarItem extends StatelessWidget {
-  ExpensyLayoutsBottomNavigationBarItem({super.key,required this.route,required this.child});
+  ExpensyLayoutsBottomNavigationBarItem({super.key,required this.route,required this.child,this.hideWhenSelected = false});
+
   String route;
   Widget child;
+  bool hideWhenSelected;
 
   @override
   Widget build(BuildContext context) {

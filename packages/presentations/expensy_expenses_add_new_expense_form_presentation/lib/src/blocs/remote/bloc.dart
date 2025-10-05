@@ -1,6 +1,5 @@
 import "package:equatable/equatable.dart";
 import "package:expensy_common/expensy_common.dart";
-import "package:flutter/foundation.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:expensy_add_new_expense_data_source_remote/expensy_add_new_expense_data_source_remote.dart" as eane_dsr;
 
@@ -14,7 +13,6 @@ class RemoteBloc extends Bloc<RemoteEvent,RemoteState>{
   RemoteBloc():super(RemoteState()){
     on<RemoteStarted>(_onStarted);
     on<RemoteGetCategories>(_onGetCategories);
-    on<RemoteAddNewExpenseRequested>(_onAddNewExpenseRequested);
     on<RemoteGetCategoryProducts>(_onGetCategoryProducts);
     on<RemoteProductSelected>(_onProductSelected);
     on<RemoteFormChanged>(_onFormChanged);
@@ -28,24 +26,14 @@ class RemoteBloc extends Bloc<RemoteEvent,RemoteState>{
 
   _onStarted(RemoteStarted event,Emitter<RemoteState> emit) async {
     try{
-
-    }catch(_){}
-  }
-
-  _onAddNewExpenseRequested(RemoteAddNewExpenseRequested event,Emitter<RemoteState> emit) async {
-    try{
-
-      var addNewExpense = await dataSource.addNewExpense(
-          eane_dsr.AddNewExpenseRequest()
-          ..currentUser = event.context.read<ExpensyCommonAuthenticationBloc>().state.getCurrentUser()
-          ..productExtraDetailsList = [
-                eane_dsr.ProductExtraDetails()
-                                   ..categoryId = "PpZrdV7U9VRdp4OZ8NHQ"
-                                   ..productId = "wc5sjygpWPbsyZhZNy49"
-          ]
-      );
-
-      print(addNewExpense);
+      //loading
+      emit(state.copyWith(isLoading: true));
+      //load expense by current date
+      final currentExpense = await dataSource.getCurrentExpense();
+      emit(state.copyWith(
+        currentExpense: currentExpense.expense,
+        isLoading: false
+      ));
     }catch(_){}
   }
 
@@ -99,7 +87,8 @@ class RemoteBloc extends Bloc<RemoteEvent,RemoteState>{
 
   _onSaveProductClicked(RemoteSaveProductClicked event,Emitter<RemoteState> emit) async {
     try{
-      final addProductToExpense = await dataSource.addProductToExpense(
+      emit(state.copyWith(isAddProductLoading: true));
+      await dataSource.addProductToExpense(
           eane_dsr.AddProductToExpenseRequest()
                   ..product = state.selectedProduct
                   ..total = state.total
@@ -111,6 +100,9 @@ class RemoteBloc extends Bloc<RemoteEvent,RemoteState>{
                         ..price = state.total
                   )
       );
+      emit(state.copyWith(isAddProductLoading: false));
+      //refresh
+      add(RemoteStarted(event.context));
     }catch(_){}
   }
 

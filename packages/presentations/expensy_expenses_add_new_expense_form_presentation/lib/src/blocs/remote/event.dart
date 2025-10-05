@@ -10,7 +10,9 @@ class RemoteStarted extends RemoteEvent{
 
 class RemoteAddNewExpenseRequested extends RemoteEvent{
   User? currentUser;
-  RemoteAddNewExpenseRequested(super.context,{this.currentUser});
+  String source;
+  RemoteAddNewExpenseRequested(super.context,this.source
+  ,{this.currentUser});
 }
 
 class RemoteGetCategories extends RemoteEvent{

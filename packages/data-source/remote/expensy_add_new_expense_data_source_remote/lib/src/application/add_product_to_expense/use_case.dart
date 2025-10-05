@@ -10,15 +10,31 @@ class AddProductToExpenseUseCase extends CommonUseCase{
 
   DocumentReference? _currentExpense;
 
-  Future<void> loadCurrentExpense() async {
+  Future<void> loadCurrentExpenseOrCreateNew() async {
     final now = DateTime.now();
+    final startOfDay = DateTime(now.year, now.month, now.day);
+    final endOfDay = DateTime(now.year, now.month, now.day, 23, 59, 59);
     final expenseRef = instance.collection('expenses')
-                 .where("createdAt",isGreaterThanOrEqualTo: DateTime(now.year, now.month, now.day),isLessThanOrEqualTo: DateTime(now.year, now.month, now.day, 23, 59, 59))
-                 .where("creator",isEqualTo: user)
-                 .limit(1);
+        .where("createdAt", isGreaterThanOrEqualTo: startOfDay)
+        .where("createdAt", isLessThanOrEqualTo: endOfDay)
+        .where("creator", isEqualTo: user)
+        .limit(1);
     final expenseSnap = await expenseRef.get();
-    _currentExpense =  expenseSnap.docs.firstOrNull?.reference;
+    if (expenseSnap.docs.isNotEmpty) {
+      _currentExpense = expenseSnap.docs.first.reference;
+    } else {
+      // Create a new expense document
+      final newExpense = await instance.collection('expenses').add({
+        "createdAt": now,
+        "creator": user,
+        // Add any other default fields required
+        "items": [],
+        "total": 0,
+      });
+      _currentExpense = newExpense;
+    }
   }
+
 
   Future<void> addProductToExpense(ProductExtraDetails? productExtraDetails) async {
     final doc = await _currentExpense?.get();
@@ -41,7 +57,7 @@ class AddProductToExpenseUseCase extends CommonUseCase{
       //Get current user by user id
       loadCurrentUser(request.currentUser?.getUserId());
       //load current expense by user id and created at
-      await loadCurrentExpense();
+      await loadCurrentExpenseOrCreateNew();
       //check if expense exist
       if(_currentExpense == null){
         //expense doesn't exist => create new one

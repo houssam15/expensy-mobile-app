@@ -15,6 +15,9 @@ class RemoteState extends Equatable{
   List<ExpensyProduct> _selectedCategoryProducts;
   ExpensyProduct? _selectedProduct;
   double? _total;
+  ExpensyExpense? _currentExpense;
+  bool _isLoading;
+  bool _isAddProductLoading;
 
   RemoteState({
     RemoteStatus? status,
@@ -25,7 +28,10 @@ class RemoteState extends Equatable{
     ExpensyExpenseCategory? selectedCategory,
     List<ExpensyProduct>? selectedCategoryProducts,
     ExpensyProduct? selectedProduct,
-    double? total
+    ExpensyExpense? currentExpense,
+    double? total,
+    bool? isLoading,
+    bool? isAddProductLoading
   })
   :_status = status ?? RemoteStatus.initial
   ,_categories = categories ?? const []
@@ -35,7 +41,10 @@ class RemoteState extends Equatable{
   ,_selectedCategory = selectedCategory
   ,_selectedCategoryProducts = selectedCategoryProducts ?? const []
   ,_selectedProduct = selectedProduct
-  ,_total = total;
+  ,_currentExpense = currentExpense
+  ,_total = total
+  ,_isLoading = isLoading ?? false
+  ,_isAddProductLoading = isAddProductLoading ?? false;
 
   RemoteState copyWith({
     RemoteStatus? status,
@@ -46,7 +55,10 @@ class RemoteState extends Equatable{
     ExpensyExpenseCategory? selectedCategory,
     List<ExpensyProduct>? selectedCategoryProducts,
     ExpensyProduct? selectedProduct,
-    double? total
+    double? total,
+    ExpensyExpense? currentExpense,
+    bool? isLoading,
+    bool? isAddProductLoading
   }){
     return RemoteState(
       status: status ?? _status,
@@ -57,7 +69,10 @@ class RemoteState extends Equatable{
       selectedCategory: selectedCategory ?? _selectedCategory,
       selectedCategoryProducts: selectedCategoryProducts ?? _selectedCategoryProducts,
       selectedProduct: selectedProduct ?? _selectedProduct,
-      total: total ?? _total
+      total: total ?? _total,
+      currentExpense: currentExpense ?? _currentExpense,
+      isLoading: isLoading ?? _isLoading,
+      isAddProductLoading: isAddProductLoading ?? _isAddProductLoading
     );
   }
 
@@ -69,6 +84,9 @@ class RemoteState extends Equatable{
   List<ExpensyProduct> get selectedCategoryProducts => _selectedCategoryProducts;
   ExpensyProduct? get selectedProduct => _selectedProduct;
   double? get total => _total;
+  ExpensyExpense? get currentExpense => _currentExpense;
+  bool get isLoading => _isLoading;
+  bool get isAddProductLoading => _isAddProductLoading;
 
   @override
   List<Object?> get props => [
@@ -80,6 +98,9 @@ class RemoteState extends Equatable{
     _selectedCategory,
     _selectedCategoryProducts,
     _selectedProduct,
-    _total
+    _total,
+    _currentExpense,
+    _isLoading,
+    _isAddProductLoading
   ];
 }

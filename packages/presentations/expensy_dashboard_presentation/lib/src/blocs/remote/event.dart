@@ -13,3 +13,7 @@ class ExpensyDashboardPresentationRemoteSelectedMonthChanged extends ExpensyDash
   ExpensyDashboardPresentationRemoteSelectedMonthChanged(super.context,{this.selectedMonth});
 }
 
+class ExpensyDashboardPresentationRemoteSignOutRequested extends ExpensyDashboardPresentationRemoteEvent{
+  ExpensyDashboardPresentationRemoteSignOutRequested(super.context);
+}
+

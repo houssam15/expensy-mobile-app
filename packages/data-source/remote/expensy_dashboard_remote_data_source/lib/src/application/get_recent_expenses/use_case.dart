@@ -1,5 +1,6 @@
 import "package:expensy_common/expensy_common.dart";
 import "package:expensy_firebase/expensy_firebase.dart";
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 part "request.dart";
 part "response.dart";
@@ -11,13 +12,13 @@ class ExpensyDashboardRemoteDataSourceGetRecentExpensesUseCase {
     ExpensyDashboardRemoteDataSourceGetRecentExpensesResponse response = ExpensyDashboardRemoteDataSourceGetRecentExpensesResponse();
 
     try{
-      var instance = ExpensyFirebase.getFirebaseStore()..loadCollection("expenses");
-
-      await instance.loadDocument();
+      var instance = FirebaseFirestore.instance;
+      var collection = instance.collection("expenses");
+      var document = await collection.orderBy("createdAt",descending: true).get();
 
       response.addMetaData(instance);
 
-      response.setItems(await ExpensyExpense.toList(instance.getDocument()?.docs));
+      response.setItems(await ExpensyExpense.toList(document.docs));
 
     }on ExpensyFirebaseFirestoreException catch (e){
 

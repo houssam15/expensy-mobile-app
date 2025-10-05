@@ -28,7 +28,7 @@ class GetCategoryProductsUseCase {
     final response = GetCategoryProductsResponse();
     try{
       List<DocumentReference> products = await getCategoryProducts(request.categoryId);
-
+      
       response.addMetaData(products);
 
       for(DocumentReference categoryRef in products){

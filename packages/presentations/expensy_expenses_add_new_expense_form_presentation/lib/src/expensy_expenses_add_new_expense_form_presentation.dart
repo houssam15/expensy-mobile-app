@@ -15,7 +15,6 @@ class ExpensyExpensesAddNewExpenseFormPresentation extends StatelessWidget {
             create: (context) => RemoteBloc()
                                  ..add(RemoteStarted(context))
                                  //add today expense if not already created
-                                 ..add(RemoteAddNewExpenseRequested(context))
                                  ..add(RemoteGetCategories(context))
         )
       ],

@@ -12,6 +12,8 @@ class ExpensyLayoutsMainLayoutBottomNavigationBarAddItem extends StatelessWidget
 
   @override
   Widget build(BuildContext context) {
+    if(isSelected) return SizedBox();
+
     return Center(
       child:Container(
         height: 50,
